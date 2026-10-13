@@ -1,6 +1,6 @@
 :root {
   color-scheme: light;
-  --ink: #161616;
+  --ink: #000;
   --muted: #666;
   --rule: #482936;
   --paper: #fff;
@@ -29,10 +29,10 @@ main:focus { outline: none; }
 .year-group { margin-top: 21.44px; }
 .year-title { font-size: 32px; font-weight: 700; line-height: normal; margin: 0 0 21.44px; }
 .year-group ul { list-style: none; padding: 0; margin: 0; }
-.post-row { display: grid; grid-template-columns: 120px minmax(0, 1fr) 80px; align-items: baseline; gap: 16px; min-height: 28.67px; margin: 12px 0; font-size: 19.2px; line-height: normal; }
+.post-row { display: grid; grid-template-columns: 120px minmax(0, 1fr) 97.333px; align-items: center; gap: 16px; min-height: 28.67px; margin: 8px 0; font-size: 19.2px; line-height: normal; }
 .post-row time { white-space: nowrap; }
 .post-link { overflow-wrap: anywhere; }
-.post-category { font-size: 13px; color: var(--muted); text-align: right; overflow-wrap: anywhere; }
+.post-category { border: 2px solid #000; border-radius: 5px; padding: 3px 0; font-size: 12.8px; font-weight: 700; color: #000; text-align: center; overflow-wrap: anywhere; }
 .category-label { border: 1px solid #333; border-radius: 4px; font-family: sans-serif; font-size: 12px; padding: 2px 7px; line-height: 1.7; white-space: nowrap; }
 .category-header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin: 28px 0; }
 .category-heading { margin: 0; font-size: 28px; overflow-wrap: anywhere; }
@@ -91,11 +91,15 @@ main:focus { outline: none; }
 .skip-link { position: fixed; top: 8px; left: 8px; padding: 10px 16px; background: #fff; border: 2px solid var(--rule); transform: translateY(-150%); z-index: 10; }
 .skip-link:focus { transform: translateY(0); }
 
+@media (max-width: 48em) {
+  .post-row { grid-template-columns: 120px minmax(0, 1fr); }
+  .post-category { display: none; }
+}
+
 @media (max-width: 600px) {
   .site-header { padding-top: 24px; text-align: center; }
   .site-title { margin-inline: auto; }
   .post-row { grid-template-columns: 72px minmax(0, 1fr); gap: 4px 12px; font-size: 16px; }
-  .post-category { grid-column: 2; text-align: left; font-size: 12px; }
   .prose { font-size: 16px; }
   .post-title { font-size: 28px; }
   .post-header { margin-top: 30px; margin-bottom: 34px; }
