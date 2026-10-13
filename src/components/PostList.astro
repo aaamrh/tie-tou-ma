@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { categoryUrl, postUrl } from '../lib/posts';
+
+interface Props { posts: CollectionEntry<'posts'>[] }
+const { posts } = Astro.props;
+const years = [...new Set(posts.map((post) => post.data.date.getUTCFullYear()))];
+const format = new Intl.DateTimeFormat('en', { month: 'short', day: '2-digit', timeZone: 'UTC' });
+---
+<div class="post-list">
+  {years.map((year) => (
+    <section class="year-group" aria-labelledby={`year-${year}`}>
+      <h2 id={`year-${year}`} class="year-title">{year}</h2>
+      <ul>
+        {posts.filter((post) => post.data.date.getUTCFullYear() === year).map((post) => (
+          <li class="post-row">
+            <time datetime={post.data.date.toISOString()}>{format.format(post.data.date)}</time>
+            <a class="post-link" href={postUrl(post.id)}>{post.data.title}</a>
+            <a class="category-label" href={categoryUrl(post.data.category)}>{post.data.category}</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+  {posts.length === 0 && <p class="empty-state">暂时没有文章。</p>}
+</div>

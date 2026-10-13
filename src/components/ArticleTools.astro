@@ -1,0 +1,95 @@
+---
+import { Copy, Check, X } from '@lucide/astro';
+---
+<template id="copy-button">
+  <button type="button" class="copy-button" aria-label="复制代码" title="复制代码">
+    <Copy size={16} class="copy-icon" aria-hidden="true" />
+    <Check size={16} class="check-icon" aria-hidden="true" />
+    <span class="copy-feedback sr-only" role="status"></span>
+  </button>
+</template>
+<dialog class="image-dialog" aria-label="图片预览">
+  <form method="dialog">
+    <button class="dialog-close" aria-label="关闭图片" title="关闭图片"><X size={22} aria-hidden="true" /></button>
+  </form>
+  <img alt="" />
+  <p class="image-caption"></p>
+</dialog>
+
+<script>
+  import { annotate } from 'rough-notation';
+
+  const prose = document.querySelector<HTMLElement>('.prose');
+  const copyTemplate = document.querySelector<HTMLTemplateElement>('#copy-button');
+  const dialog = document.querySelector<HTMLDialogElement>('.image-dialog');
+  const dialogImage = dialog?.querySelector('img');
+  const dialogCaption = dialog?.querySelector('.image-caption');
+  if (!prose || !copyTemplate || !dialog || !dialogImage || !dialogCaption) {
+    throw new Error('文章控件缺少必要元素');
+  }
+
+  for (const pre of prose.querySelectorAll<HTMLPreElement>('pre')) {
+    const code = pre.querySelector('code');
+    const button = copyTemplate.content.querySelector('button')?.cloneNode(true);
+    if (!code || !(button instanceof HTMLButtonElement)) throw new Error('代码块结构不完整');
+    const feedback = button.querySelector('.copy-feedback');
+    if (!feedback) throw new Error('代码复制控件缺少状态元素');
+    const wrapper = document.createElement('div');
+    wrapper.className = 'code-block';
+    pre.before(wrapper);
+    wrapper.append(pre, button);
+    let resetTimer: ReturnType<typeof setTimeout>;
+    button.addEventListener('click', async () => {
+      await navigator.clipboard.writeText(code.textContent ?? '');
+      clearTimeout(resetTimer);
+      button.classList.add('copied');
+      button.title = '已复制';
+      feedback.textContent = '代码已复制';
+      resetTimer = setTimeout(() => {
+        button.classList.remove('copied');
+        button.title = '复制代码';
+        feedback.textContent = '';
+      }, 1800);
+    });
+  }
+
+  for (const image of prose.querySelectorAll<HTMLImageElement>('img')) {
+    if (image.closest('a')) continue;
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'image-open';
+    button.title = '放大图片';
+    button.setAttribute('aria-label', `放大图片：${image.alt}`);
+    image.before(button);
+    button.append(image);
+    button.addEventListener('click', () => {
+      dialogImage.src = image.src;
+      dialogImage.srcset = image.srcset;
+      dialogImage.sizes = 'calc(100vw - 64px)';
+      dialogImage.alt = image.alt;
+      dialogCaption.textContent = image.alt;
+      dialog.showModal();
+    });
+  }
+  dialog.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+
+  await document.fonts.ready;
+  for (const element of prose.querySelectorAll<HTMLElement>('[data-annotation]')) {
+    const type = element.dataset.annotation;
+    if (type !== 'underline' && type !== 'circle' && type !== 'highlight') {
+      throw new Error(`不支持的标记类型：${type}`);
+    }
+    const annotation = annotate(element, {
+      type,
+      color: element.dataset.color,
+      multiline: true,
+      animate: false,
+      strokeWidth: 1.5,
+      padding: 2,
+      iterations: 2,
+    });
+    annotation.show();
+  }
+</script>

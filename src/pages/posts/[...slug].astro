@@ -1,0 +1,36 @@
+---
+import { render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import ArticleTools from '../../components/ArticleTools.astro';
+import { getPosts, categoryUrl, postUrl } from '../../lib/posts';
+
+export const getStaticPaths = (async () => {
+  const posts = await getPosts();
+  return posts.map((post, index) => ({
+    params: { slug: post.id },
+    props: { post, newer: posts[index - 1], older: posts[index + 1] },
+  }));
+}) satisfies GetStaticPaths;
+
+const { post, newer, older } = Astro.props;
+const { Content } = await render(post);
+const date = new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(post.data.date);
+---
+<SiteLayout title={post.data.title} description={post.data.description}>
+  <article>
+    <header class="post-header">
+      <h1 class="post-title">{post.data.title}</h1>
+      <div class="post-meta">
+        <time datetime={post.data.date.toISOString()}>{date}</time>
+        <a class="category-label" href={categoryUrl(post.data.category)}>{post.data.category}</a>
+      </div>
+    </header>
+    <div class="prose"><Content /></div>
+    <nav class="post-navigation" aria-label="相邻文章">
+      {newer && <a href={postUrl(newer.id)}><span>较新文章</span>{newer.data.title}</a>}
+      {older && <a href={postUrl(older.id)}><span>较早文章</span>{older.data.title}</a>}
+    </nav>
+  </article>
+  <ArticleTools />
+</SiteLayout>

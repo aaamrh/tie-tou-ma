@@ -1,0 +1,15 @@
+---
+interface Props {
+  type?: 'underline' | 'circle' | 'highlight' | 'wavy' | 'straight';
+  color?: string;
+}
+
+const { type = 'underline', color = '#8064b2' } = Astro.props;
+const handDrawn = ['underline', 'circle', 'highlight'].includes(type);
+---
+<span
+  class:list={['mark', `mark--${type}`]}
+  style={{ '--mark-color': color }}
+  data-annotation={handDrawn ? type : undefined}
+  data-color={handDrawn ? color : undefined}
+><slot /></span>

@@ -1,0 +1,32 @@
+{
+  "name": "tie-tou-ma-blog",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "check": "astro check",
+    "build": "astro build",
+    "preview": "astro preview --host 127.0.0.1",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^8.0.3",
+    "@fontsource/bree-serif": "^5.3.0",
+    "@fontsource/bungee-shade": "^5.3.0",
+    "@lucide/astro": "^1.56.0",
+    "astro": "^7.3.8",
+    "rough-notation": "^0.5.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "axe-core": "^4.14.0",
+    "cheerio": "^1.2.0",
+    "vfile": "^6.0.3",
+    "vfile-matter": "^5.0.1",
+    "typescript": "^6.0.3"
+  }
+}
