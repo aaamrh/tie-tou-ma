@@ -8,7 +8,6 @@
   font-family: 'Bree Serif', sans-serif;
   color: var(--ink);
   background: var(--paper);
-  font-synthesis: none;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -22,23 +21,22 @@ button, a { -webkit-tap-highlight-color: transparent; }
 main:focus { outline: none; }
 .site-header, main, .site-footer { max-width: 800px; margin-inline: auto; }
 .site-header { padding-top: 32px; }
-.site-title { display: inline-block; font-family: 'Bungee Shade', sans-serif; font-size: 32px; font-weight: 700; line-height: 1.5; }
+.site-title { display: block; font-family: 'Bungee Shade', sans-serif; font-size: 32px; font-weight: 700; line-height: normal; width: fit-content; max-width: 100%; overflow-wrap: anywhere; }
 .site-title:hover { text-decoration: none; }
-.site-subtitle { color: var(--muted); font-size: 16px; margin: 7px 0 22px; line-height: 1.7; }
+.site-subtitle { color: var(--muted); font-size: 16px; margin: 0 0 20px; line-height: normal; }
 .header-line { border: 0; border-top: 2px solid var(--rule); margin: 0; }
-.category-nav { display: flex; flex-wrap: wrap; gap: 8px 24px; padding: 22px 0 3px; font-size: 14px; }
-.category-nav a { padding-block: 6px; color: var(--muted); }
-.category-nav a[aria-current='page'] { color: var(--ink); text-decoration: underline; text-underline-offset: 7px; }
 .post-list { min-height: 520px; padding-bottom: 28px; }
-.year-group { margin-top: 34px; }
-.year-title { font-size: 32px; font-weight: 400; margin: 0 0 22px; }
+.year-group { margin-top: 21.44px; }
+.year-title { font-size: 32px; font-weight: 700; line-height: normal; margin: 0 0 21.44px; }
 .year-group ul { list-style: none; padding: 0; margin: 0; }
-.post-row { display: grid; grid-template-columns: 76px minmax(0, 1fr) auto; align-items: start; gap: 16px; margin: 20px 0; line-height: 1.65; }
-.post-row time { font-size: 16px; padding-top: 2px; white-space: nowrap; }
-.post-link { font-size: 19px; overflow-wrap: anywhere; }
+.post-row { display: grid; grid-template-columns: 120px minmax(0, 1fr) 80px; align-items: baseline; gap: 16px; min-height: 28.67px; margin: 12px 0; font-size: 19.2px; line-height: normal; }
+.post-row time { white-space: nowrap; }
+.post-link { overflow-wrap: anywhere; }
+.post-category { font-size: 13px; color: var(--muted); text-align: right; overflow-wrap: anywhere; }
 .category-label { border: 1px solid #333; border-radius: 4px; font-family: sans-serif; font-size: 12px; padding: 2px 7px; line-height: 1.7; white-space: nowrap; }
-.post-row .category-label { margin-top: 3px; }
-.category-heading { margin: 36px 0 0; font-size: 28px; }
+.category-header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin: 28px 0; }
+.category-heading { margin: 0; font-size: 28px; overflow-wrap: anywhere; }
+.category-back { color: var(--muted); font-size: 14px; white-space: nowrap; }
 .post-header { margin: 40px 0 46px; }
 .post-title { margin: 0 0 22px; font-size: 32px; font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; }
 .post-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; font-size: 14px; color: var(--muted); }
@@ -95,13 +93,10 @@ main:focus { outline: none; }
 
 @media (max-width: 600px) {
   .site-header { padding-top: 24px; text-align: center; }
-  .site-subtitle { font-size: 14px; }
-  .category-nav { justify-content: center; gap: 8px 20px; }
-  .post-row { grid-template-columns: 62px minmax(0, 1fr); gap: 10px; margin: 19px 0; }
-  .post-row time { font-size: 14px; }
-  .post-row .category-label { display: none; }
-  .post-link, .prose { font-size: 16px; }
-  .year-title { font-size: 28px; }
+  .site-title { margin-inline: auto; }
+  .post-row { grid-template-columns: 72px minmax(0, 1fr); gap: 4px 12px; font-size: 16px; }
+  .post-category { grid-column: 2; text-align: left; font-size: 12px; }
+  .prose { font-size: 16px; }
   .post-title { font-size: 28px; }
   .post-header { margin-top: 30px; margin-bottom: 34px; }
   .prose h2 { font-size: 22px; }

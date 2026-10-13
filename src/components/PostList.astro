@@ -16,7 +16,7 @@ const format = new Intl.DateTimeFormat('en', { month: 'short', day: '2-digit', t
           <li class="post-row">
             <time datetime={post.data.date.toISOString()}>{format.format(post.data.date)}</time>
             <a class="post-link" href={postUrl(post.id)}>{post.data.title}</a>
-            <a class="category-label" href={categoryUrl(post.data.category)}>{post.data.category}</a>
+            <a class="post-category" href={categoryUrl(post.data.category)} aria-label={`查看${post.data.category}分类`}>{post.data.category}</a>
           </li>
         ))}
       </ul>

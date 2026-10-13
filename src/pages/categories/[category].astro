@@ -1,22 +1,21 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import PostList from '../../components/PostList.astro';
-import { getPosts, categoryUrl } from '../../lib/posts';
+import { getPosts } from '../../lib/posts';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
   const posts = await getPosts();
   const categories = [...new Set(posts.map((post) => post.data.category))];
-  return categories.map((category) => ({ params: { category }, props: { category, categories, posts: posts.filter((post) => post.data.category === category) } }));
+  return categories.map((category) => ({ params: { category }, props: { category, posts: posts.filter((post) => post.data.category === category) } }));
 }) satisfies GetStaticPaths;
 
-const { category, categories, posts } = Astro.props;
+const { category, posts } = Astro.props;
 ---
 <SiteLayout title={category}>
-  <h1 class="category-heading">{category}</h1>
-  <nav class="category-nav" aria-label="文章分类">
-    <a href={import.meta.env.BASE_URL}>全部</a>
-    {categories.map((name) => <a href={categoryUrl(name)} aria-current={name === category ? 'page' : undefined}>{name}</a>)}
-  </nav>
+  <div class="category-header">
+    <h1 class="category-heading">{category}</h1>
+    <a class="category-back" href={import.meta.env.BASE_URL}>全部文章</a>
+  </div>
   <PostList posts={posts} />
 </SiteLayout>
