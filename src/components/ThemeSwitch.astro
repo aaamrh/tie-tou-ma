@@ -43,7 +43,7 @@ import '../styles/theme-switch.css';
 </svg>
 
 <label class="theme-switch">
-  <input class="theme-switch__checkbox" type="checkbox" role="switch" aria-label="深色主题" />
+  <input class="theme-switch__checkbox" type="checkbox" role="switch" aria-label="深色主题" disabled />
   <div class="theme-switch__container" aria-hidden="true">
     <div class="theme-switch__clouds"></div>
     <div class="theme-switch__stars-container">
@@ -82,3 +82,8 @@ import '../styles/theme-switch.css';
     </div>
   </div>
 </label>
+<script is:inline>
+  const themeControl = document.querySelector('.theme-switch__checkbox');
+  themeControl.checked = document.documentElement.dataset.theme === 'dark';
+  themeControl.disabled = false;
+</script>

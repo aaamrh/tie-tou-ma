@@ -17,15 +17,18 @@
 
   applyTheme();
 
+  document.addEventListener('change', (event) => {
+    const control = event.target;
+    if (!(control instanceof HTMLInputElement) || !control.matches('.theme-switch__checkbox')) return;
+    preference = control.checked ? 'dark' : 'light';
+    localStorage.setItem(key, preference);
+    applyTheme();
+  });
+
   document.addEventListener('DOMContentLoaded', () => {
     const control = document.querySelector('.theme-switch__checkbox');
     if (!(control instanceof HTMLInputElement)) throw new Error('页面缺少主题开关');
     applyTheme();
-    control.addEventListener('change', () => {
-      preference = control.checked ? 'dark' : 'light';
-      localStorage.setItem(key, preference);
-      applyTheme();
-    });
   });
 
   system.addEventListener('change', () => {
