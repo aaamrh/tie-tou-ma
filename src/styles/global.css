@@ -14,8 +14,8 @@
   --quote-border: #c6cbd1;
   --close-bg: #f4f4f4;
   --success: #286648;
-  --selection-bg: #c7f0e5;
-  --selection-ink: #102d29;
+  --selection-bg: lab(62.991 59.315 -1.483);
+  --selection-ink: #18191b;
   font-family: 'Bree Serif', sans-serif;
   color: var(--ink);
   background: var(--paper);
@@ -38,8 +38,8 @@
   --quote-border: #50545c;
   --close-bg: #303339;
   --success: #7ad6a1;
-  --selection-bg: #315b56;
-  --selection-ink: #f0fff9;
+  --selection-bg: lab(80.999 32.356 -7.029);
+  --selection-ink: #18191b;
 }
 
 * { box-sizing: border-box; }
