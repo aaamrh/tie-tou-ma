@@ -5,15 +5,15 @@ interface Props {
 }
 
 const defaultColors: Record<NonNullable<Props['type']>, string> = {
-  underline: '#e9435a',
+  underline: '#2787e5',
   circle: '#e9435a',
   highlight: '#ffe66d',
   box: '#2787e5',
   'strike-through': '#858585',
   'crossed-off': '#858585',
   bracket: '#00a99d',
-  wavy: '#e9435a',
-  straight: '#e9435a',
+  wavy: '#00a99d',
+  straight: '#2787e5',
 };
 
 const { type = 'underline', color = defaultColors[type] } = Astro.props;
