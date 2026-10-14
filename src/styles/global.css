@@ -14,6 +14,8 @@
   --quote-border: #c6cbd1;
   --close-bg: #f4f4f4;
   --success: #286648;
+  --selection-bg: #c7f0e5;
+  --selection-ink: #102d29;
   font-family: 'Bree Serif', sans-serif;
   color: var(--ink);
   background: var(--paper);
@@ -36,9 +38,12 @@
   --quote-border: #50545c;
   --close-bg: #303339;
   --success: #7ad6a1;
+  --selection-bg: #315b56;
+  --selection-ink: #f0fff9;
 }
 
 * { box-sizing: border-box; }
+::selection { background-color: var(--selection-bg); color: var(--selection-ink); text-shadow: none; }
 body { margin: 0 20px; }
 button { font: inherit; }
 a { color: inherit; text-decoration: none; }
