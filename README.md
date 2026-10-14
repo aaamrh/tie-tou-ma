@@ -70,7 +70,7 @@ import Mark from '../../components/Mark.astro';
 
 <Mark type="circle">圈注</Mark>
 
-<Mark type="highlight" color="#f2e6a8">荧光标记</Mark>
+<Mark type="highlight">荧光标记</Mark>
 
 <Mark type="box">手绘方框</Mark>
 
@@ -80,12 +80,14 @@ import Mark from '../../components/Mark.astro';
 
 <Mark type="bracket">右侧括号</Mark>
 
-<Mark type="wavy" color="#bc9027">波浪线</Mark>
+<Mark type="wavy">波浪线</Mark>
 
-<Mark type="straight" color="#c85478">普通下划线</Mark>
+<Mark type="straight">普通下划线</Mark>
 ```
 
-颜色使用 CSS 颜色值。文字换行和浏览器宽度变化时，手绘标记重新计算位置。
+默认颜色按标注含义分组：下划线、圈注、波浪线和普通下划线用于强调重点，统一使用琥珀色；荧光标记使用浅黄色；方框用于信息范围，使用蓝色；括号用于内容分组，使用青绿色；删除线和交叉划除表示删除或取消，统一使用中性灰色。
+
+`color` 接受 CSS 颜色值，显式设置时优先于默认颜色，例如 `<Mark type="circle" color="#3979bd">蓝色圈注</Mark>`。默认配色在 `src/components/Mark.astro` 的 `defaultColors` 中设置。文字换行和浏览器宽度变化时，手绘标记重新计算位置。
 
 ## 发布到 GitHub Pages
 

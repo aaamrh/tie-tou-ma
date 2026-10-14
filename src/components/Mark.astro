@@ -4,7 +4,19 @@ interface Props {
   color?: string;
 }
 
-const { type = 'underline', color = '#8064b2' } = Astro.props;
+const defaultColors: Record<NonNullable<Props['type']>, string> = {
+  underline: '#b87a12',
+  circle: '#b87a12',
+  highlight: '#f7df87',
+  box: '#3979bd',
+  'strike-through': '#858585',
+  'crossed-off': '#858585',
+  bracket: '#26877f',
+  wavy: '#b87a12',
+  straight: '#b87a12',
+};
+
+const { type = 'underline', color = defaultColors[type] } = Astro.props;
 const handDrawn = ['underline', 'circle', 'highlight', 'box', 'strike-through', 'crossed-off', 'bracket'].includes(type);
 ---
 <span
