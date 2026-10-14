@@ -85,7 +85,7 @@ import Mark from '../../components/Mark.astro';
 <Mark type="straight">普通下划线</Mark>
 ```
 
-默认配色分为六组，同组使用同一种颜色：
+默认配色分为七组，同组使用同一种颜色：
 
 | 标记分组 | 类型 | 颜色 |
 | --- | --- | --- |
@@ -93,7 +93,8 @@ import Mark from '../../components/Mark.astro';
 | 画圈：关键词 | `circle` | 珊瑚红 `#e9435a` |
 | 括号：内容分组 | `bracket` | 粉色 `#e879b5` |
 | 删除或取消 | `strike-through`、`crossed-off` | 中性灰 `#858585` |
-| 横线：重要观点或精彩表达 | `underline`、`straight`、`wavy` | 绿色 `#2b9e68` |
+| 横线：重要观点 | `underline`、`straight` | 绿色 `#2b9e68` |
+| 波浪线：精彩表达 | `wavy` | 电光紫 `#7f00ff` |
 | 背景：荧光标记 | `highlight` | 柠檬黄 `#ffe66d` |
 
 `color` 接受 CSS 颜色值，显式设置时优先于默认颜色，例如 `<Mark type="circle" color="#2787e5">蓝色圈注</Mark>`。默认配色在 `src/components/Mark.astro` 的 `defaultColors` 中设置。文字换行和浏览器宽度变化时，手绘标记重新计算位置。
