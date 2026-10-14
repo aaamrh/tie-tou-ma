@@ -1,4 +1,5 @@
 :root {
+  overflow-y: scroll;
   color-scheme: light;
   --ink: #000;
   --muted: #666;
