@@ -9,6 +9,9 @@ export default defineConfig({
   devToolbar: { enabled: false },
   integrations: [mdx()],
   markdown: {
-    shikiConfig: { theme: 'github-light-high-contrast', wrap: false },
+    shikiConfig: {
+      themes: { light: 'github-light-high-contrast', dark: 'github-dark-high-contrast' },
+      wrap: false,
+    },
   },
 });

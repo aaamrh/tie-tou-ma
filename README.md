@@ -23,6 +23,16 @@ npm test
 
 编辑 `src/site.ts` 中的 `title`、`subtitle` 和 `description`。当前名称为 Tony Ma。
 
+## 主题切换
+
+站名右侧的太阳/月亮开关用于切换浅色和深色主题，可见尺寸为 `54 × 24px`，点击区域高度为 `44px`，支持 Tab 聚焦和空格切换。
+
+首次访问跟随系统主题，手动选择保存在浏览器的 `tony-ma-theme` localStorage 项目中。刷新、页面跳转和同源标签页之间保持选择一致；尚未手动选择时，跟随系统主题的实时变化。主题在页面头部初始化。
+
+深色背景为炭黑 `#18191b`，正文为灰白 `#e7e8ea`，代码区为 `#222427`。代码高亮随主题切换；深色模式下默认波浪线提高明度，荧光区域使用深色文字。文章显式设置的标记颜色优先于默认配色。
+
+按钮封装在 `src/components/ThemeSwitch.astro`，样式在 `src/styles/theme-switch.css`，主题状态逻辑在 `src/scripts/theme.js`。系统开启减少动画时，开关停止动画。
+
 ## 编写文章
 
 文章放在 `src/content/posts/`。文件名决定网址，例如 `my-day.md` 对应 `/posts/my-day/`。正文使用 Markdown。

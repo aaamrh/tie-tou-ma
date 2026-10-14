@@ -3,6 +3,8 @@ import '@fontsource/bree-serif/latin-400.css';
 import '@fontsource/bungee-shade/latin-400.css';
 import '../styles/global.css';
 import { site } from '../site';
+import ThemeSwitch from '../components/ThemeSwitch.astro';
+import themeScript from '../scripts/theme.js?raw';
 
 interface Props {
   title?: string;
@@ -19,6 +21,7 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefin
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline set:html={themeScript}></script>
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}favicon.png`} />
@@ -32,7 +35,10 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefin
   <body>
     <a class="skip-link" href="#main">跳转到正文</a>
     <header class="site-header">
-      <a class="site-title" href={import.meta.env.BASE_URL}>{site.title}</a>
+      <div class="header-row">
+        <a class="site-title" href={import.meta.env.BASE_URL}>{site.title}</a>
+        <ThemeSwitch />
+      </div>
       <p class="site-subtitle">{site.subtitle}</p>
       <hr class="header-line" />
     </header>

@@ -30,6 +30,11 @@ test('生成的页面、内部链接和本地资源完整', async () => {
     assert.equal($('h1').length, 1, file);
     assert.ok($('title').text().trim(), file);
     assert.ok($('meta[name="description"]').attr('content'), file);
+    assert.equal($('.theme-switch input[type="checkbox"][role="switch"]').length, 1, file);
+    assert.ok($('.theme-switch input').attr('aria-label'), file);
+    assert.equal($('head script:not([src])').toArray().filter((node) => $(node).text().includes('tony-ma-theme')).length, 1, file);
+    assert.equal($('filter#sketchy').length, 1, file);
+    assert.equal($('filter#sketchy-sm').length, 1, file);
     const pagePath = file.slice(root.length).replaceAll('\\', '/').replace(/index\.html$/, '');
     const pageUrl = new URL(`${base}${pagePath.replace(/^\//, '')}`, origin);
     for (const element of $('a[href], img[src], script[src], link[rel="stylesheet"][href], link[rel="icon"][href]').toArray()) {
@@ -88,7 +93,10 @@ test('正文图片、代码块和文字标记结构完整', async () => {
     }
     for (const pre of $('.prose pre').toArray()) {
       assert.equal($(pre).children('code').length, 1, file);
-      if ($(pre).hasClass('astro-code')) assert.ok($(pre).attr('style').includes('color:'), file);
+      if ($(pre).hasClass('astro-code')) {
+        assert.ok($(pre).attr('style').includes('color:'), file);
+        assert.ok($(pre).attr('style').includes('--shiki-dark:'), file);
+      }
     }
     for (const mark of $('.mark').toArray()) {
       const type = types.find((name) => $(mark).hasClass(`mark--${name}`));

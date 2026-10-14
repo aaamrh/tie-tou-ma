@@ -16,12 +16,14 @@ const defaultColors: Record<NonNullable<Props['type']>, string> = {
   straight: '#2b9e68',
 };
 
-const { type = 'underline', color = defaultColors[type] } = Astro.props;
+const { type = 'underline', color } = Astro.props;
+const lightColor = color ?? defaultColors[type];
+const darkColor = color ?? (type === 'wavy' ? '#b48aff' : defaultColors[type]);
 const handDrawn = ['underline', 'circle', 'highlight', 'box', 'strike-through', 'crossed-off', 'bracket'].includes(type);
 ---
 <span
   class:list={['mark', `mark--${type}`]}
-  style={{ '--mark-color': color }}
+  style={{ '--mark-color-light': lightColor, '--mark-color-dark': darkColor }}
   data-annotation={handDrawn ? type : undefined}
-  data-color={handDrawn ? color : undefined}
+  data-color={handDrawn ? lightColor : undefined}
 ><slot /></span>
