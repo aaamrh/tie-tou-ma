@@ -79,7 +79,7 @@ test('文章列表按日期排列，草稿不进入任何发布页面', async ()
 });
 
 test('正文图片、代码块和文字标记结构完整', async () => {
-  const types = ['underline', 'circle', 'highlight', 'wavy', 'straight'];
+  const types = ['underline', 'circle', 'highlight', 'box', 'strike-through', 'crossed-off', 'bracket', 'wavy', 'straight'];
   for (const file of await filesWithExtensions(root, ['.html'])) {
     const $ = load(await readFile(file, 'utf8'));
     for (const image of $('.prose img').toArray()) {
@@ -93,7 +93,7 @@ test('正文图片、代码块和文字标记结构完整', async () => {
     for (const mark of $('.mark').toArray()) {
       const type = types.find((name) => $(mark).hasClass(`mark--${name}`));
       assert.ok(type, file);
-      const handDrawn = ['underline', 'circle', 'highlight'].includes(type);
+      const handDrawn = ['underline', 'circle', 'highlight', 'box', 'strike-through', 'crossed-off', 'bracket'].includes(type);
       assert.equal($(mark).attr('data-annotation'), handDrawn ? type : undefined, file);
     }
   }

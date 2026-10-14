@@ -72,6 +72,14 @@ import Mark from '../../components/Mark.astro';
 
 <Mark type="highlight" color="#f2e6a8">荧光标记</Mark>
 
+<Mark type="box">手绘方框</Mark>
+
+<Mark type="strike-through">手绘删除线</Mark>
+
+<Mark type="crossed-off">交叉划除</Mark>
+
+<Mark type="bracket">右侧括号</Mark>
+
 <Mark type="wavy" color="#bc9027">波浪线</Mark>
 
 <Mark type="straight" color="#c85478">普通下划线</Mark>

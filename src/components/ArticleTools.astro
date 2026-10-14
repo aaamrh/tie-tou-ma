@@ -78,7 +78,10 @@ import { Copy, Check, X } from '@lucide/astro';
   await document.fonts.ready;
   for (const element of prose.querySelectorAll<HTMLElement>('[data-annotation]')) {
     const type = element.dataset.annotation;
-    if (type !== 'underline' && type !== 'circle' && type !== 'highlight') {
+    if (
+      type !== 'underline' && type !== 'circle' && type !== 'highlight' &&
+      type !== 'box' && type !== 'strike-through' && type !== 'crossed-off' && type !== 'bracket'
+    ) {
       throw new Error(`不支持的标记类型：${type}`);
     }
     const annotation = annotate(element, {
