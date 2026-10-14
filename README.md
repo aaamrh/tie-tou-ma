@@ -91,7 +91,7 @@ import Mark from '../../components/Mark.astro';
 | --- | --- | --- |
 | 方框：信息范围 | `box` | 蓝色 `#2787e5` |
 | 画圈：关键词 | `circle` | 珊瑚红 `#e9435a` |
-| 括号：内容分组 | `bracket` | 紫色 `#9472d8` |
+| 括号：内容分组 | `bracket` | 粉色 `#e879b5` |
 | 删除或取消 | `strike-through`、`crossed-off` | 中性灰 `#858585` |
 | 横线：重要观点或精彩表达 | `underline`、`straight`、`wavy` | 绿色 `#2b9e68` |
 | 背景：荧光标记 | `highlight` | 柠檬黄 `#ffe66d` |
